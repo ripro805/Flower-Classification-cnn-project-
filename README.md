@@ -26,34 +26,37 @@ print(path)
 
 root/
 ├── train/
-│ ├── daisy/
-│ ├── rose/
-│ ├── sunflower/
-│ ├── tulip/
-│ └── ...
+│   ├── daisy/
+│   ├── rose/
+│   ├── sunflower/
+│   ├── tulip/
+│   └── ... (other flower categories)
 └── (or direct class folders)
+
 
 Each folder represents a unique class label.
 
-🧠 Problem Type
+# 🧠 Problem Type
 Multi-class image classification
 Input: Flower images
 Output: Flower category (K classes)
-🏗️ Model Architecture (CNN)
+
+# 🏗️ Model Architecture (CNN)
 
 The model is a 4-block Convolutional Neural Network.
 
 Each block includes:
 
-Convolution layer (Conv2D)
-Batch Normalization
-ReLU Activation
-MaxPooling
-📊 Filter progression:
+- Convolution layer (Conv2D)
+- Batch Normalization
+- ReLU Activation
+- MaxPooling
+
+# 📊 Filter progression:
 
 32 → 64 → 128 → 256
 
-🔬 Why CNN?
+# 🔬 Why CNN?
 
 CNN is used because it:
 
@@ -61,7 +64,8 @@ Automatically extracts image features
 Reduces manual feature engineering
 Performs very well on image data
 Learns hierarchical representations
-⚙️ Activation Function (ReLU)
+
+# ⚙️ Activation Function (ReLU)
 
 ReLU(x) = max(0, x)
 
@@ -70,7 +74,8 @@ Benefits:
 Adds non-linearity
 Helps learn complex patterns
 Speeds up training
-🧪 Batch Normalization
+
+# 🧪 Batch Normalization
 
 BatchNorm is used to:
 
@@ -78,7 +83,8 @@ Normalize activations
 Stabilize training
 Improve convergence speed
 Reduce overfitting
-📉 MaxPooling
+
+# 📉 MaxPooling
 
 MaxPooling is used to:
 
@@ -89,7 +95,7 @@ Reduce computation cost
 Example:
 128×128 → 64×64 → 32×32 → 16×16
 
-🧱 Fully Connected Layers
+# 🧱 Fully Connected Layers
 
 After feature extraction:
 
@@ -99,7 +105,8 @@ Linear(25688 → 512)
 ReLU
 Dropout(0.5)
 Linear(512 → K classes)
-🎯 Output Layer
+
+# 🎯 Output Layer
 
 The final layer outputs class probabilities.
 
@@ -110,9 +117,9 @@ Sunflower: 0.80
 Daisy: 0.05
 Tulip: 0.05
 
-👉 Highest probability = predicted class
+# 👉 Highest probability = predicted class
 
-📦 Custom Dataset
+# 📦 Custom Dataset
 
 A fully custom PyTorch Dataset class is used.
 
@@ -122,7 +129,8 @@ Filters only valid image files
 Assigns labels automatically
 Applies transformations
 Returns (image, label)
-⚠️ Important Fixes in This Project
+
+# ⚠️ Important Fixes in This Project
 
 This project includes fixes for common errors:
 
@@ -132,30 +140,32 @@ This project includes fixes for common errors:
 ✔ Robust DataLoader creation
 ✔ Safe random image visualization
 
-🔁 Training Setup
+# 🔁 Training Setup
 Loss Function: CrossEntropyLoss
 Optimizer: Adam
 Epochs: 5–10
 Batch Size: 32
 Learning Rate: 0.001
-🚀 Training Process
+
+# 🚀 Training Process
 Images are loaded through custom dataset
 Passed through CNN model
 Predictions are generated
 Loss is calculated
 Backpropagation updates weights
 Model gradually improves accuracy
-📊 Evaluation
+
+# 📊 Evaluation
 
 Accuracy is calculated using:
 
 Accuracy = Correct Predictions / Total Predictions
 
-🖼️ Visualization
+# 🖼️ Visualization
 
 Random flower images are displayed using Matplotlib to verify dataset loading and preprocessing.
 
-🔄 Workflow
+# 🔄 Workflow
 
 Input Image
 → Conv Block 1 (edges)
@@ -167,7 +177,7 @@ Input Image
 → Dropout
 → Output Layer (Prediction)
 
-📈 Key Features
+# 📈 Key Features
 Custom Dataset implementation
 Fully error-free data pipeline
 4-layer deep CNN architecture
@@ -175,14 +185,16 @@ Batch Normalization
 Dropout regularization
 Multi-class classification
 Kaggle dataset integration
-GPU support (CUDA)
-🔮 Future Improvements
+GPU support (CUDA) 
+
+# 🔮 Future Improvements
 Confusion Matrix
 Training vs Validation Graph
 Transfer Learning (ResNet, VGG)
 Model saving (.pth)
 Web deployment using Streamlit/Flask
 Data augmentation improvements
-👨‍💻 Author
 
-This project is developed as a Deep Learning assignment using PyTorch for multi-class image classification.
+# 👨‍💻 Author
+
+This project is developed as a Deep Learning assignment using PyTorch for multi-class image classification by **Md.Rifat Islam Rizvi**.
