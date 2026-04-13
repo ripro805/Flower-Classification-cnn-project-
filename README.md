@@ -30,9 +30,7 @@ root/
 │   ├── rose/
 │   ├── sunflower/
 │   ├── tulip/
-│   └── ... (other flower categories)
-└── (or direct class folders)
-
+│   └── ...
 
 Each folder represents a unique class label.
 
