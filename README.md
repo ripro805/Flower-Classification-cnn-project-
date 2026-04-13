@@ -1,18 +1,14 @@
-# 🌸 Flower Classification using CNN (PyTorch + Custom Dataset)
+# 🌸 Flower Classification with CNN (PyTorch)
 
-This project is a deep learning solution for multi-class flower image classification using a Convolutional Neural Network (CNN) built with PyTorch. The dataset is loaded using a fully custom Dataset class to ensure flexibility and better understanding of image preprocessing pipelines.
+This project trains a Convolutional Neural Network (CNN) to classify flower images into multiple classes using PyTorch. The workflow includes custom dataset loading, preprocessing, model training, and evaluation.
 
----
+## 🎯 Project Objective
 
-# 📌 Project Objective
+Build a reliable multi-class image classifier that can learn visual patterns from flower images (such as edges, textures, and shapes) and predict the correct flower category.
 
-The goal of this project is to classify flower images into multiple categories by training a deep CNN model that learns visual patterns such as edges, textures, shapes, and complex flower structures.
+## 📂 Dataset
 
----
-
-# 📂 Dataset
-
-The dataset is downloaded using KaggleHub:
+The dataset can be downloaded using `kagglehub`:
 
 ```python
 import kagglehub
@@ -21,9 +17,9 @@ path = kagglehub.dataset_download("marquis03/flower-classification")
 print(path)
 ```
 
+### Expected structure
 
-# 📁 Expected Structure
-
+```text
 root/
 ├── train/
 │   ├── daisy/
@@ -31,168 +27,98 @@ root/
 │   ├── sunflower/
 │   ├── tulip/
 │   └── ...
+```
 
-Each folder represents a unique class label.
+Each class should be stored in its own folder.
 
-# 🧠 Problem Type
-Multi-class image classification
-Input: Flower images
-Output: Flower category (K classes)
+## 🧠 Problem Type
 
-# 🏗️ Model Architecture (CNN)
+- **Task:** Multi-class image classification
+- **Input:** Flower image
+- **Output:** Predicted flower class
 
-The model is a 4-block Convolutional Neural Network.
+## 🏗️ Model Architecture
 
-Each block includes:
+The model uses a 4-block CNN pipeline. Each block contains:
 
-- Convolution layer (Conv2D)
+- Convolution (`Conv2D`)
 - Batch Normalization
-- ReLU Activation
+- ReLU activation
 - MaxPooling
 
-# 📊 Filter progression:
+Filter progression:
 
-32 → 64 → 128 → 256
+`32 → 64 → 128 → 256`
 
-# 🔬 Why CNN?
+After convolutional feature extraction, the model uses fully connected layers for final class prediction.
 
-CNN is used because it:
+## ⚙️ Why These Components?
 
-Automatically extracts image features
-Reduces manual feature engineering
-Performs very well on image data
-Learns hierarchical representations
+- **CNN:** Learns hierarchical visual features automatically.
+- **ReLU:** Adds non-linearity and helps efficient training.
+- **BatchNorm:** Stabilizes learning and improves convergence.
+- **MaxPooling:** Reduces spatial size while preserving important features.
+- **Dropout:** Helps reduce overfitting.
 
-# ⚙️ Activation Function (ReLU)
+## 📦 Custom Dataset Support
 
-ReLU(x) = max(0, x)
+The project uses a custom PyTorch `Dataset` class to:
 
-Benefits:
+- Load images from class-wise folders
+- Ignore invalid/non-image files
+- Apply transforms safely
+- Return `(image, label)` pairs
 
-Adds non-linearity
-Helps learn complex patterns
-Speeds up training
+## 🔁 Training Setup (Typical)
 
-# 🧪 Batch Normalization
+- Loss function: `CrossEntropyLoss`
+- Optimizer: `Adam`
+- Batch size: `32`
+- Learning rate: `0.001`
+- Epochs: `5-10` (adjust as needed)
 
-BatchNorm is used to:
+## 🚀 Training Workflow
 
-Normalize activations
-Stabilize training
-Improve convergence speed
-Reduce overfitting
+1. Load and preprocess images
+2. Pass images through CNN
+3. Compute predictions and loss
+4. Backpropagate gradients
+5. Update model weights
+6. Track training/validation performance
 
-# 📉 MaxPooling
+## 📊 Evaluation
 
-MaxPooling is used to:
+Primary metric:
 
-Reduce spatial dimensions
-Keep important features
-Reduce computation cost
+`Accuracy = Correct Predictions / Total Predictions`
 
-Example:
-128×128 → 64×64 → 32×32 → 16×16
+## 🖼️ Visualization
 
-# 🧱 Fully Connected Layers
+Matplotlib is used to visualize random samples to validate:
 
-After feature extraction:
+- Correct image loading
+- Label mapping
+- Preprocessing pipeline
 
-Flatten → Dense Layers
+## ✅ Key Features
 
-Linear(25688 → 512)
-ReLU
-Dropout(0.5)
-Linear(512 → K classes)
+- Custom dataset pipeline
+- Robust image filtering
+- 4-block CNN architecture
+- Batch normalization + dropout
+- Multi-class classification
+- Kaggle dataset integration
+- CUDA/GPU support (if available)
 
-# 🎯 Output Layer
+## 🔮 Future Improvements
 
-The final layer outputs class probabilities.
+- Confusion matrix
+- Training vs. validation curves
+- Transfer learning (ResNet, VGG, EfficientNet)
+- Model checkpoint saving (`.pth`)
+- Better data augmentation
+- Web app demo (Streamlit/Flask)
 
-Example:
+## 👨‍💻 Author
 
-Rose: 0.10
-Sunflower: 0.80
-Daisy: 0.05
-Tulip: 0.05
-
-# 👉 Highest probability = predicted class
-
-# 📦 Custom Dataset
-
-A fully custom PyTorch Dataset class is used.
-
-Features:
-Loads images from folder structure
-Filters only valid image files
-Assigns labels automatically
-Applies transformations
-Returns (image, label)
-
-# ⚠️ Important Fixes in This Project
-
-This project includes fixes for common errors:
-
-✔ Non-image file filtering (.txt, .csv removed)
-✔ Empty dataset handling
-✔ Safe train-test split
-✔ Robust DataLoader creation
-✔ Safe random image visualization
-
-# 🔁 Training Setup
-Loss Function: CrossEntropyLoss
-Optimizer: Adam
-Epochs: 5–10
-Batch Size: 32
-Learning Rate: 0.001
-
-# 🚀 Training Process
-Images are loaded through custom dataset
-Passed through CNN model
-Predictions are generated
-Loss is calculated
-Backpropagation updates weights
-Model gradually improves accuracy
-
-# 📊 Evaluation
-
-Accuracy is calculated using:
-
-Accuracy = Correct Predictions / Total Predictions
-
-# 🖼️ Visualization
-
-Random flower images are displayed using Matplotlib to verify dataset loading and preprocessing.
-
-# 🔄 Workflow
-
-Input Image
-→ Conv Block 1 (edges)
-→ Conv Block 2 (textures)
-→ Conv Block 3 (shapes)
-→ Conv Block 4 (complex patterns)
-→ Flatten
-→ Fully Connected Layer
-→ Dropout
-→ Output Layer (Prediction)
-
-# 📈 Key Features
-Custom Dataset implementation
-Fully error-free data pipeline
-4-layer deep CNN architecture
-Batch Normalization
-Dropout regularization
-Multi-class classification
-Kaggle dataset integration
-GPU support (CUDA) 
-
-# 🔮 Future Improvements
-Confusion Matrix
-Training vs Validation Graph
-Transfer Learning (ResNet, VGG)
-Model saving (.pth)
-Web deployment using Streamlit/Flask
-Data augmentation improvements
-
-# 👨‍💻 Author
-
-This project is developed as a Deep Learning assignment using PyTorch for multi-class image classification by **Md.Rifat Islam Rizvi**.
+Developed as a deep learning assignment by **Md. Rifat Islam Rizvi**.
