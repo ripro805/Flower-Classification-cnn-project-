@@ -19,10 +19,10 @@ import kagglehub
 
 path = kagglehub.dataset_download("marquis03/flower-classification")
 print(path)
+```
 
 
-
-📁 Expected Structure
+# 📁 Expected Structure
 
 root/
 ├── train/
